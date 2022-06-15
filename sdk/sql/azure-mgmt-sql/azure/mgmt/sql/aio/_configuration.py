@@ -19,15 +19,15 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class SqlManagementClientConfiguration(Configuration):
+class SqlManagementClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for SqlManagementClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param subscription_id: The subscription ID that identifies an Azure subscription.
+    :param subscription_id: The subscription ID that identifies an Azure subscription. Required.
     :type subscription_id: str
     """
 

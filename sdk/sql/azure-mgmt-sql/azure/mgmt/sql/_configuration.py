@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
@@ -16,27 +16,30 @@ from ._version import VERSION
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
+
     from azure.core.credentials import TokenCredential
 
 
-class SqlManagementClientConfiguration(Configuration):
+class SqlManagementClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for SqlManagementClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param subscription_id: The subscription ID that identifies an Azure subscription.
+    :param subscription_id: The subscription ID that identifies an Azure subscription. Required.
     :type subscription_id: str
     """
 
     def __init__(
         self,
-        credential: "TokenCredential",
-        subscription_id: str,
-        **kwargs: Any
-    ) -> None:
+        credential,  # type: "TokenCredential"
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         super(SqlManagementClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
